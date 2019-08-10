@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" href="/static/css/mdui.min.css">
     <link rel="stylesheet" href="/static/css/xcraft.css">
-    <script src="/static/js/xcraft.js"></script>
     <title>
         {% if page %} {{ page }} {% else %} 404 {% endif %} - {% if name %} {{ name }} {% else %} Xcraft {% endif %}
     </title>
@@ -18,48 +17,67 @@
             <a href="javascript:;" class="mdui-typo-title">{% if page %} {{ page }} {% else %} 404 {% endif %}</a>
             <div class="mdui-toolbar-spacer"></div>
             <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>
-            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
+            <a href="" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
             <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
         </div>
     </div>
     <div class="mdui-drawer" id="drawer">
         <ul class="mdui-list">
-            <li class="mdui-list-item mdui-ripple" onclick="javascript:petch('状态 - {% if name %} {{ name }} {% else %} Xcraft {% endif %}','/')">
-                <i class="mdui-list-item-icon mdui-icon material-icons">info</i>
-                <div class="mdui-list-item-content">状态</div>
-            </li>
+            <a href="/">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons">info</i>
+                    <div class="mdui-list-item-content">状态</div>
+                </li>
+            </a>
             <li class="mdui-subheader">Xcraft应用</li>
-            <li class="mdui-list-item mdui-ripple" onclick="javascript:petch('Multicraft - {% if name %} {{ name }} {% else %} Xcraft {% endif %}','/multicraft')">
-                <i class="mdui-list-item-icon mdui-icon material-icons">cloud</i>
-                <div class="mdui-list-item-content">Multicraft</div>
-            </li>
-            <li class="mdui-list-item mdui-ripple" onclick="javascript:petch('翼龙面板 - {% if name %} {{ name }} {% else %} Xcraft {% endif %}','/pterodactyl')">
-                <i class="mdui-list-item-icon mdui-icon material-icons">flight</i>
-                <div class="mdui-list-item-content">翼龙面板</div>
-            </li>
-            <li class="mdui-list-item mdui-ripple" onclick="javascript:petch('Amadeus - {% if name %} {{ name }} {% else %} Xcraft {% endif %}','/amadeus')">
-                <i class="mdui-list-item-icon mdui-icon material-icons">disc_full</i>
-                <div class="mdui-list-item-content">Amadeus</div>
-            </li>
+            <a href="/multicraft">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons">cloud</i>
+                    <div class="mdui-list-item-content">Multicraft</div>
+                </li>
+            </a>
+            <a href="/pterodactyl">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons">flight</i>
+                    <div class="mdui-list-item-content">翼龙面板</div>
+                </li>
+            </a>
+            <a href="/amadeus">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons">disc_full</i>
+                    <div class="mdui-list-item-content">Amadeus</div>
+                </li>
+            </a>
             <li class="mdui-subheader">Xcraft管理</li>
-            <li class="mdui-list-item mdui-ripple" onclick="javascript:petch('文件 - {% if name %} {{ name }} {% else %} Xcraft {% endif %}','/files')">
-                <i class="mdui-list-item-icon mdui-icon material-icons">folder</i>
-                <div class="mdui-list-item-content">文件</div>
-            </li>
-            <li class="mdui-list-item mdui-ripple" onclick="javascript:petch('安全 - {% if name %} {{ name }} {% else %} Xcraft {% endif %}','/security')">
-                <i class="mdui-list-item-icon mdui-icon material-icons">security</i>
-                <div class="mdui-list-item-content">安全</div>
-            </li>
-            <li class="mdui-list-item mdui-ripple" onclick="javascript:petch('设置 - {% if name %} {{ name }} {% else %} Xcraft {% endif %}','/settings')">
-                <i class="mdui-list-item-icon mdui-icon material-icons">settings</i>
-                <div class="mdui-list-item-content">设置</div>
-            </li>
+            <a href="/files">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons">folder</i>
+                    <div class="mdui-list-item-content">文件</div>
+                </li>
+            </a>
+            <a href="/security">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons">security</i>
+                    <div class="mdui-list-item-content">安全</div>
+                </li>
+            </a>
+            <a href="/settings">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons">settings</i>
+                    <div class="mdui-list-item-content">设置</div>
+                </li>
+            </a>
         </ul>
     </div>
     <div class="petch_content mdui-container" id="petch_content">
-    {% block petch_content %}{% endblock %}
+        {% block petch_content %}{% endblock %}
     </div>
 </div>
-<script src="/static/js/mdui.min.js"></script>
+<script src="/static/js/jq.js"></script>
+<script src="/static/js/pjax.js"></script>
+<script>
+    //$(document).pjax('a', '#petch_content')
+    $(document).pjax('a', '#petch_content')
+</script>
 </body>
 </html>

@@ -93,7 +93,8 @@ def render_petch(base, view, petch, **kwargs):
 
 @app.errorhandler(404)
 def page_not_found(error):
-    petch = flask.request.args.get('petch', False)
+    # petch = flask.request.args.get('petch', False)
+    petch = flask.request.headers.get('X_PJAX', False)
     return render_petch(base='logined.html',
                         view='404.html',
                         petch=petch,
@@ -102,11 +103,12 @@ def page_not_found(error):
                         theme_primary=config['theme_primary'],
                         theme_accent=config['theme_accent'])
 
+
 # 状态-Xcraft
 @app.route('/', methods=['GET'])
 def index():
     flask.session['username'] = 'dhdj'
-    petch = flask.request.args.get('petch', False)
+    petch = flask.request.headers.get('X_PJAX', False)
     return render_petch(base='logined.html',
                         view='index.html',
                         petch=petch,
@@ -115,9 +117,10 @@ def index():
                         theme_primary=config['theme_primary'],
                         theme_accent=config['theme_accent'])
 
+
 @app.route('/files', methods=['GET'])
 def files():
-    petch = flask.request.args.get('petch', False)
+    petch = flask.request.headers.get('X_PJAX', False)
     if 'username' in flask.session:
         return render_petch(base='logined.html',
                             view='files.html',
@@ -129,9 +132,10 @@ def files():
     else:
         return need_login_controller.activate()
 
+
 @app.route('/security', methods=['GET'])
 def security():
-    petch = flask.request.args.get('petch', False)
+    petch = flask.request.headers.get('X_PJAX', False)
     if 'username' in flask.session:
         return render_petch(base='logined.html',
                             view='security.html',
@@ -143,9 +147,10 @@ def security():
     else:
         return need_login_controller.activate()
 
+
 @app.route('/settings', methods=['GET'])
 def settings():
-    petch = flask.request.args.get('petch', False)
+    petch = flask.request.headers.get('X_PJAX', False)
     if 'username' in flask.session:
         return render_petch(base='logined.html',
                             view='settings.html',
@@ -157,9 +162,10 @@ def settings():
     else:
         return need_login_controller.activate()
 
+
 @app.route('/multicraft', methods=['GET'])
 def multicraft():
-    petch = flask.request.args.get('petch', False)
+    petch = flask.request.headers.get('X_PJAX', False)
     if 'username' in flask.session:
         return render_petch(base='logined.html',
                             view='multicraft.html',
@@ -171,9 +177,10 @@ def multicraft():
     else:
         return need_login_controller.activate()
 
+
 @app.route('/pterodactyl', methods=['GET'])
 def pterodactyl():
-    petch = flask.request.args.get('petch', False)
+    petch = flask.request.headers.get('X_PJAX', False)
     if 'username' in flask.session:
         return render_petch(base='logined.html',
                             view='pterodactyl.html',
@@ -185,9 +192,10 @@ def pterodactyl():
     else:
         return need_login_controller.activate()
 
+
 @app.route('/amadeus', methods=['GET'])
 def amadeus():
-    petch = flask.request.args.get('petch', False)
+    petch = flask.request.headers.get('X_PJAX', False)
     if 'username' in flask.session:
         return render_petch(base='logined.html',
                             view='amadeus.html',
@@ -198,6 +206,7 @@ def amadeus():
                             theme_accent=config['theme_accent'])
     else:
         return need_login_controller.activate()
+
 
 @app.route('/api/status', methods=['POST', 'GET'])
 def status():

@@ -1,12 +1,14 @@
 {% if not petch %}
 
-    {% extends base %}
-    {% block petch_content %}
-        {% include view %}
-    {% endblock %}
+{% extends base %}
+{% block petch_content %}
+{% include view %}
+<script src="/static/js/mdui.min.js"></script>
+{% endblock %}
 
 {% else %}
 
-    {% include view %}
+{% include view %}
+<script src="/static/js/mdui.min.js"></script>
 
 {% endif %}

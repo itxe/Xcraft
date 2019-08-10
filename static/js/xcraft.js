@@ -1,11 +1,14 @@
 window.onpopstate = function (event) {
-    console.log(event)
+    document.getElementById('petch_content').innerHTML = '';
+    setTimeout("petch_display()", 100)
+    petch_request(null, event.currentTarget.location.pathname)
 }
 
 function petch(title, page_path) {
     document.getElementById('petch_content').innerHTML = '';
     setTimeout("petch_display()", 100)
     petch_request(title, page_path)
+    window.history.pushState({}, title, page_path)
 }
 
 function petch_display() {
@@ -19,7 +22,9 @@ function petch_request(title, page_path) {
         .then(res => res.text())
         .then(function (res) {
             document.getElementById('petch_content').innerHTML = res;
-            document.title = title
-            window.history.pushState({}, title, page_path)
+            if(title != null){
+                document.title = title
+            }
+            window.eval('<script src="/static/js/mdui.min.js"></script>')
         })
 }
