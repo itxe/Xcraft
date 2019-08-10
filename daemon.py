@@ -83,11 +83,11 @@ def read_config(name):
 
 
 # 所谓petch就是page-fetch，引用了pjax的名字~但是并不是pjax
-def render_petch(base, view, pjax, **kwargs):
+def render_petch(base, view, petch, **kwargs):
     return flask.render_template(template_name_or_list='petch_wrapper.html',
                                  base=base,
                                  view=view,
-                                 pjax=pjax,
+                                 petch=petch,
                                  **kwargs)
 
 
@@ -95,10 +95,10 @@ def render_petch(base, view, pjax, **kwargs):
 @app.route('/', methods=['GET'])
 def index():
     flask.session['username'] = 'dhdj'
-    pjax = flask.request.args.get('pjax', False)
+    petch = flask.request.args.get('petch', False)
     return render_petch(base='logined.html',
                         view='index.html',
-                        pjax=pjax,
+                        petch=petch,
                         page='状态',
                         name=config['panel_name'],
                         theme_primary=config['theme_primary'],
