@@ -3,13 +3,11 @@
 {% extends base %}
 {% block petch_content %}
 {% include view %}
-<script src="/static/js/mdui.min.js"></script>
 {% endblock %}
 
 {% else %}
 
 {% include view %}
-<script src="/static/js/mdui.min.js"></script>
 <script>
     document.title="{% if page %} {{ page }} {% else %} 404 {% endif %} - {% if name %} {{ name }} {% else %} Xcraft {% endif %}";
     $("#name").text("{% if name %} {{ name }} {% else %} Xcraft {% endif %}")

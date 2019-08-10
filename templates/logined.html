@@ -14,8 +14,10 @@
         <div class="mdui-toolbar mdui-color-theme">
             <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#drawer'}"><i
                     class="mdui-icon material-icons">menu</i></a>
-            <a href="javascript:;" class="mdui-typo-headline" id="name">{% if name %} {{ name }} {% else %} Xcraft {% endif %}</a>
-            <a href="javascript:;" class="mdui-typo-title" id="title">{% if page %} {{ page }} {% else %} 404 {% endif %}</a>
+            <a href="javascript:;" class="mdui-typo-headline" id="name">{% if name %} {{ name }} {% else %} Xcraft {%
+                endif %}</a>
+            <a href="javascript:;" class="mdui-typo-title" id="title">{% if page %} {{ page }} {% else %} 404 {% endif
+                %}</a>
             <div class="mdui-toolbar-spacer"></div>
             <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>
             <a href="" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
@@ -75,13 +77,19 @@
     </div>
 </div>
 <script src="/static/js/jq.js"></script>
+<script src="/static/js/mdui.min.js"></script>
 <script src="/static/js/pjax.js"></script>
 <script src='/static/js/nprogress.js'></script>
 <script>
     //$(document).pjax('a', '#petch_content')
     $(document).pjax('a', '#petch_content')
-    $(document).on('pjax:start', function() { NProgress.start(); });
-    $(document).on('pjax:end',   function() { NProgress.done();  });
+    $(document).on('pjax:start', function () {
+        NProgress.start();
+    });
+    $(document).on('pjax:end', function () {
+        NProgress.done();
+        mdui.mutation();
+    });
 </script>
 </body>
 </html>
