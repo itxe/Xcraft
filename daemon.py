@@ -91,6 +91,17 @@ def render_petch(base, view, petch, **kwargs):
                                  **kwargs)
 
 
+@app.errorhandler(404)
+def page_not_found(error):
+    petch = flask.request.args.get('petch', False)
+    return render_petch(base='logined.html',
+                        view='404.html',
+                        petch=petch,
+                        page='404',
+                        name=config['panel_name'],
+                        theme_primary=config['theme_primary'],
+                        theme_accent=config['theme_accent'])
+
 # 状态-Xcraft
 @app.route('/', methods=['GET'])
 def index():
@@ -104,6 +115,89 @@ def index():
                         theme_primary=config['theme_primary'],
                         theme_accent=config['theme_accent'])
 
+@app.route('/files', methods=['GET'])
+def files():
+    petch = flask.request.args.get('petch', False)
+    if 'username' in flask.session:
+        return render_petch(base='logined.html',
+                            view='files.html',
+                            petch=petch,
+                            page='文件',
+                            name=config['panel_name'],
+                            theme_primary=config['theme_primary'],
+                            theme_accent=config['theme_accent'])
+    else:
+        return need_login_controller.activate()
+
+@app.route('/security', methods=['GET'])
+def security():
+    petch = flask.request.args.get('petch', False)
+    if 'username' in flask.session:
+        return render_petch(base='logined.html',
+                            view='security.html',
+                            petch=petch,
+                            page='安全',
+                            name=config['panel_name'],
+                            theme_primary=config['theme_primary'],
+                            theme_accent=config['theme_accent'])
+    else:
+        return need_login_controller.activate()
+
+@app.route('/settings', methods=['GET'])
+def settings():
+    petch = flask.request.args.get('petch', False)
+    if 'username' in flask.session:
+        return render_petch(base='logined.html',
+                            view='settings.html',
+                            petch=petch,
+                            page='设置',
+                            name=config['panel_name'],
+                            theme_primary=config['theme_primary'],
+                            theme_accent=config['theme_accent'])
+    else:
+        return need_login_controller.activate()
+
+@app.route('/multicraft', methods=['GET'])
+def multicraft():
+    petch = flask.request.args.get('petch', False)
+    if 'username' in flask.session:
+        return render_petch(base='logined.html',
+                            view='multicraft.html',
+                            petch=petch,
+                            page='Multicraft',
+                            name=config['panel_name'],
+                            theme_primary=config['theme_primary'],
+                            theme_accent=config['theme_accent'])
+    else:
+        return need_login_controller.activate()
+
+@app.route('/pterodactyl', methods=['GET'])
+def pterodactyl():
+    petch = flask.request.args.get('petch', False)
+    if 'username' in flask.session:
+        return render_petch(base='logined.html',
+                            view='pterodactyl.html',
+                            petch=petch,
+                            page='翼龙面板',
+                            name=config['panel_name'],
+                            theme_primary=config['theme_primary'],
+                            theme_accent=config['theme_accent'])
+    else:
+        return need_login_controller.activate()
+
+@app.route('/amadeus', methods=['GET'])
+def amadeus():
+    petch = flask.request.args.get('petch', False)
+    if 'username' in flask.session:
+        return render_petch(base='logined.html',
+                            view='amadeus.html',
+                            petch=petch,
+                            page='Amadeus',
+                            name=config['panel_name'],
+                            theme_primary=config['theme_primary'],
+                            theme_accent=config['theme_accent'])
+    else:
+        return need_login_controller.activate()
 
 @app.route('/api/status', methods=['POST', 'GET'])
 def status():
