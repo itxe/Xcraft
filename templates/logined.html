@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="/static/css/mdui.min.css">
     <link rel="stylesheet" href="/static/css/xcraft.css">
+    <link rel='stylesheet' href='/static/css/nprogress.css'/>
     <title>
         {% if page %} {{ page }} {% else %} 404 {% endif %} - {% if name %} {{ name }} {% else %} Xcraft {% endif %}
     </title>
@@ -13,8 +14,8 @@
         <div class="mdui-toolbar mdui-color-theme">
             <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#drawer'}"><i
                     class="mdui-icon material-icons">menu</i></a>
-            <a href="javascript:;" class="mdui-typo-headline">{% if name %} {{ name }} {% else %} Xcraft {% endif %}</a>
-            <a href="javascript:;" class="mdui-typo-title">{% if page %} {{ page }} {% else %} 404 {% endif %}</a>
+            <a href="javascript:;" class="mdui-typo-headline" id="name">{% if name %} {{ name }} {% else %} Xcraft {% endif %}</a>
+            <a href="javascript:;" class="mdui-typo-title" id="title">{% if page %} {{ page }} {% else %} 404 {% endif %}</a>
             <div class="mdui-toolbar-spacer"></div>
             <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>
             <a href="" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
@@ -24,45 +25,45 @@
     <div class="mdui-drawer" id="drawer">
         <ul class="mdui-list">
             <a href="/">
-                <li class="mdui-list-item mdui-ripple">
+                <li class="mdui-list-item mdui-ripple mdui-ripple-black">
                     <i class="mdui-list-item-icon mdui-icon material-icons">info</i>
                     <div class="mdui-list-item-content">状态</div>
                 </li>
             </a>
             <li class="mdui-subheader">Xcraft应用</li>
             <a href="/multicraft">
-                <li class="mdui-list-item mdui-ripple">
+                <li class="mdui-list-item mdui-ripple mdui-ripple-black">
                     <i class="mdui-list-item-icon mdui-icon material-icons">cloud</i>
                     <div class="mdui-list-item-content">Multicraft</div>
                 </li>
             </a>
             <a href="/pterodactyl">
-                <li class="mdui-list-item mdui-ripple">
+                <li class="mdui-list-item mdui-ripple mdui-ripple-black">
                     <i class="mdui-list-item-icon mdui-icon material-icons">flight</i>
                     <div class="mdui-list-item-content">翼龙面板</div>
                 </li>
             </a>
             <a href="/amadeus">
-                <li class="mdui-list-item mdui-ripple">
+                <li class="mdui-list-item mdui-ripple mdui-ripple-black">
                     <i class="mdui-list-item-icon mdui-icon material-icons">disc_full</i>
                     <div class="mdui-list-item-content">Amadeus</div>
                 </li>
             </a>
             <li class="mdui-subheader">Xcraft管理</li>
             <a href="/files">
-                <li class="mdui-list-item mdui-ripple">
+                <li class="mdui-list-item mdui-ripple mdui-ripple-black">
                     <i class="mdui-list-item-icon mdui-icon material-icons">folder</i>
                     <div class="mdui-list-item-content">文件</div>
                 </li>
             </a>
             <a href="/security">
-                <li class="mdui-list-item mdui-ripple">
+                <li class="mdui-list-item mdui-ripple mdui-ripple-black">
                     <i class="mdui-list-item-icon mdui-icon material-icons">security</i>
                     <div class="mdui-list-item-content">安全</div>
                 </li>
             </a>
             <a href="/settings">
-                <li class="mdui-list-item mdui-ripple">
+                <li class="mdui-list-item mdui-ripple mdui-ripple-black">
                     <i class="mdui-list-item-icon mdui-icon material-icons">settings</i>
                     <div class="mdui-list-item-content">设置</div>
                 </li>
@@ -75,9 +76,12 @@
 </div>
 <script src="/static/js/jq.js"></script>
 <script src="/static/js/pjax.js"></script>
+<script src='/static/js/nprogress.js'></script>
 <script>
     //$(document).pjax('a', '#petch_content')
     $(document).pjax('a', '#petch_content')
+    $(document).on('pjax:start', function() { NProgress.start(); });
+    $(document).on('pjax:end',   function() { NProgress.done();  });
 </script>
 </body>
 </html>
