@@ -1,0 +1,12 @@
+{% if not pjax %}
+
+    {% extends base %}
+    {% block petch_content %}
+        {% include view %}
+    {% endblock %}
+
+{% else %}
+
+    {% include view %}
+
+{% endif %}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <link rel="stylesheet" href="/static/css/mdui.min.css">
+    <title>
+        {% if page %} {{ page }} {% else %} 404 {% endif %} - {% if name %} {{ name }} {% else %} Xcraft {% endif %}
+    </title>
+</head>
+<body class="{% if theme_primary %} {{ theme_primary }} {% else %} mdui-theme-primary-indigo {% endif %} {% if theme_accent %} {{ theme_accent }} {% else %} mdui-theme-accent-pink {% endif %} mdui-appbar-with-toolbar mdui-drawer-body-left">
+<div id="content">
+    <div class="mdui-appbar mdui-appbar-fixed">
+        <div class="mdui-toolbar mdui-color-theme">
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#drawer'}"><i
+                    class="mdui-icon material-icons">menu</i></a>
+            <a href="javascript:;" class="mdui-typo-headline">{% if name %} {{ name }} {% else %} Xcraft {% endif %}</a>
+            <a href="javascript:;" class="mdui-typo-title">{% if page %} {{ page }} {% else %} 404 {% endif %}</a>
+            <div class="mdui-toolbar-spacer"></div>
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
+        </div>
+    </div>
+    <div class="mdui-drawer" id="drawer">
+        <ul class="mdui-list">
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">move_to_inbox</i>
+                <div class="mdui-list-item-content">状态</div>
+            </li>
+            <li class="mdui-subheader">Xcraft应用</li>
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">email</i>
+                <div class="mdui-list-item-content">Multicraft</div>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">delete</i>
+                <div class="mdui-list-item-content">翼龙面板</div>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">error</i>
+                <div class="mdui-list-item-content">Amadeus</div>
+            </li>
+            <li class="mdui-subheader">Xcraft管理</li>
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">star</i>
+                <div class="mdui-list-item-content">文件</div>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">send</i>
+                <div class="mdui-list-item-content">安全</div>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">drafts</i>
+                <div class="mdui-list-item-content">设置</div>
+            </li>
+        </ul>
+    </div>
+    {% block petch_content %}{% endblock %}
+</div>
+<script src="/static/js/mdui.min.js"></script>
+</body>
+</html>
